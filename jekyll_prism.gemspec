@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split
   s.test_files  = `git ls-files spec/*`.split
 
-  s.add_dependency 'liquid', '~> 2.6.1'
+  s.add_dependency 'liquid', '~> 2.5.5'
 
   s.add_development_dependency 'rubocop', '~> 0.19.0'
   s.add_development_dependency 'travis-lint', '~> 1.8.0'
