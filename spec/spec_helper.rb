@@ -9,7 +9,7 @@ end
 require 'rspec'
 require 'jekyll_prism'
 
-require "jekyll"
+require 'jekyll'
 
 module Jekyll
   module AssetsPlugin
@@ -31,11 +31,11 @@ RSpec.configure do |config|
   config.before(:all) do
     Jekyll.logger.log_level = Jekyll::Stevenson::WARN
 
-    @dest = fixtures_path.join("_site")
-    @site = Jekyll::Site.new(Jekyll.configuration({
-      "source"      => fixtures_path.to_s,
-      "destination" => @dest.to_s
-    }))
+    @dest = fixtures_path.join('_site')
+    @site = Jekyll::Site.new(Jekyll.configuration(
+      'source'      => fixtures_path.to_s,
+      'destination' => @dest.to_s
+    ))
 
     @dest.rmtree if @dest.exist?
     @site.process
