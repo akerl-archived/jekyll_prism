@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'jekyll-prism'
+  s.name        = 'jekyll_prism'
   s.version     = '0.0.1'
   s.date        = Time.now.strftime("%Y-%m-%d")
 
@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = ""
   s.authors     = ['Les Aker']
   s.email       = 'me@lesaker.org'
-  s.homepage    = 'https://github.com/akerl/jekyll-prism'
+  s.homepage    = 'https://github.com/akerl/jekyll_prism'
   s.license     = 'MIT'
 
   s.files       = `git ls-files`.split

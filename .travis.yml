@@ -8,6 +8,6 @@ notifications:
   email: false
   irc:
     template:
-    - "%{repository}/%{branch}/%{build_number}: %{message} -- %{build_url}"
+    - '%{repository}/%{branch}/%{build_number}: %{message} -- %{build_url}'
     channels:
-      secure: Al70IaBBA1mSDuFOKO3Lxoby0tnptH1FXswGG2D9tV7qjwNHvYRQrZgyB+6m0gETv2pGaQEtFod42Te6WiH0YfNDKS3GS7XxD9cQi5HY2IvPQbhlcViRYrD2v6iA2hSM3980tVgon/rduWl8AF2skLHiVbxZEm9Yq0TRIAo3bFo=
+      secure: aMgtnnMk2L9qiuolkyEOQt3PFIArubiL7Aq6MX0TL56eLWYop+Q5g76pLY87FaohFv3tynE469toWwMPoC06f/QmcupsheHBty1BUhfx29ZRhGLAwRb0zAQfUx9qRL6/XA1awDpErkHeQmXBu6f/rR8LtNejuQdlPGRHUok7Pxg=

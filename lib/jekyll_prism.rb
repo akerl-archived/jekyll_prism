@@ -16,8 +16,8 @@ module Jekyll
       code = h(super).strip
 
       linenos = @linenos == 'all' ? "1-#{code.lines.count}" : @linenos
-      linestring = linenos.nil? ? '' : %Q{ data-line="#{@linenos}"}
-      langstring = lang.nil? ? '' : %Q{ class="language-#{@lang}"}
+      linestring = linenos.nil? ? '' : %Q( data-line="#{@linenos}")
+      langstring = lang.nil? ? '' : %Q( class="language-#{@lang}")
 
       <<-OUTPUT
 <pre#{linestring}><code#{langstring}>
@@ -38,10 +38,10 @@ module Jekyll
 
     def render(_)
       linenos = @linenos == 'all' ? "1-#{code.lines.count}" : @linenos
-      linestring = linenos.nil? ? '' : %Q{ data-line="#{@linenos}"}
-      langstring = lang.nil? ? '' : %Q{ class="language-#{@lang}"}
+      linestring = linenos.nil? ? '' : %Q( data-line="#{@linenos}")
+      langstring = lang.nil? ? '' : %Q( class="language-#{@lang}")
 
-      %Q{<pre data-src="#{@file}"#{langstring}#{linestring}></pre>}
+      %Q(<pre data-src="#{@file}"#{langstring}#{linestring}></pre>)
     end
   end
 end
