@@ -1,29 +1,81 @@
 require 'liquid'
 
 ##
+# Helpers for defining code HTML
+module PrismHelpers
+  def parse_args(args)
+    args.each_with_object({}) do |arg, hash|
+      value, key = arg.split('=').reverse
+      key ||= 'lang'
+      hash[key.to_sym] = value
+    end
+  end
+
+  def pre_attrs(opts)
+    s = ' class="'
+    s = add_line_numbers(s, opts)
+    s = add_lang(s, opts) if opts.include? :source
+    s << '"'
+    s = add_line_start(s, opts) unless [nil, 1].include? opts[:numbers]
+    s = add_source(s, opts) if opts.include? :source
+    s = add_highlights(s, opts) if opts.include? :highlights
+    s
+  end
+
+  def code_attrs(opts)
+    s = ' class="'
+    s = add_lang(s, opts) unless opts.include? :source
+    s << '"'
+  end
+
+  def add_line_numbers(s, opts)
+    s << 'line-numbers ' if opts.include? :numbers
+    s
+  end
+
+  def add_lang(s, opts)
+    s << "language-#{opts[:lang]}" if opts.include? :lang
+    s
+  end
+
+  def add_line_start(s, opts)
+    s << %Q( data-start="#{opts[:numbers]}")
+  end
+
+  def add_highlights(s, opts)
+    lines = if opts[:highlights] == 'all'
+              "1-#{opts[:linecount]}"
+            else
+              opts[:highlights]
+            end
+    s << %Q( data-line="#{lines}")
+  end
+
+  def add_source(s, opts)
+    s << %Q( data-src="#{opts[:source]}")
+  end
+end
+
+##
 # Extend Jekyll to provide Prism helper blocks and tags
 module Jekyll
   ##
   # Block object for Prism hilighting
   class CodeBlock < Liquid::Block
     include Liquid::StandardFilters
+    include PrismHelpers
 
     def initialize(a, args, b)
       super
-      options = args.split
-      @lang, @linenos = options.shift 2
-      true
+      @options = parse_args args.split
     end
 
     def render(_)
       code = h(super).strip
-
-      linenos = @linenos == 'all' ? "1-#{code.lines.count}" : @linenos
-      linestring = linenos.nil? ? '' : %Q( data-line="#{linenos}")
-      langstring = @lang.nil? ? '' : %Q( class="language-#{@lang}")
+      @options[:linecount] = code.lines.size
 
       <<-OUTPUT
-<pre#{linestring}><code#{langstring}>
+<pre#{pre_attrs @options}><code#{code_attrs @options}>
 #{code}
 </code></pre>
       OUTPUT
@@ -33,17 +85,17 @@ module Jekyll
   ##
   # Tag object for Prism hilighting
   class CodeTag < Liquid::Tag
+    include PrismHelpers
+
     def initialize(_, args, _)
       super
-      options = args.split
-      @file, @lang, @linenos = options.shift 3
+      args = args.split
+      args[0] = "source=#{args[0]}"
+      @options = parse_args args
     end
 
     def render(_)
-      linestring = @linenos.nil? ? '' : %Q( data-line="#{@linenos}")
-      langstring = @lang.nil? ? '' : %Q( class="language-#{@lang}")
-
-      %Q(<pre data-src="#{@file}"#{langstring}#{linestring}></pre>)
+      %Q(<pre#{pre_attrs @options}></pre>)
     end
   end
 end
