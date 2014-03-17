@@ -72,7 +72,7 @@ module Jekyll
 
     def render(_)
       code = h(super).strip
-      @options[:linecount] = code.lines.length
+      @options[:linecount] = code.lines.count
 
       <<-OUTPUT
 <pre#{pre_attrs @options}><code#{code_attrs @options}>
