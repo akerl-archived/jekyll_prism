@@ -95,7 +95,7 @@ module Jekyll
     end
 
     def render(_)
-      %Q(<pre#{pre_attrs @options}></pre>)
+      "<pre#{pre_attrs @options}></pre>"
     end
   end
 end
