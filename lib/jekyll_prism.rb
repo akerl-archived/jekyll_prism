@@ -39,7 +39,7 @@ module PrismHelpers
   end
 
   def add_line_start(s, opts)
-    s << %Q( data-start="#{opts[:numbers]}")
+    s << %( data-start="#{opts[:numbers]}")
   end
 
   def add_highlights(s, opts)
@@ -48,11 +48,11 @@ module PrismHelpers
             else
               opts[:highlights]
             end
-    s << %Q( data-line="#{lines}")
+    s << %( data-line="#{lines}")
   end
 
   def add_source(s, opts)
-    s << %Q( data-src="#{opts[:source]}")
+    s << %( data-src="#{opts[:source]}")
   end
 end
 
