@@ -1,3 +1,5 @@
+**Inactive Project:** I am no longer updating this, as I've switched to using embedded Gists for syntax highlighting on my blog
+
 jekyll_prism
 =========
 
