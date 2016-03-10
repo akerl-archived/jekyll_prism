@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'liquid', '~> 3.0.0'
 
-  s.add_development_dependency 'rubocop', '~> 0.37.0'
+  s.add_development_dependency 'rubocop', '~> 0.38.0'
   s.add_development_dependency 'rake', '~> 11.0.0'
   s.add_development_dependency 'coveralls', '~> 0.8.0'
   s.add_development_dependency 'rspec', '~> 3.4.0'
